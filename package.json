@@ -1,30 +1,30 @@
 {
-  "name": "dat-json",
-  "description": "read &amp; write dat.json files",
-  "version": "1.0.3",
+  "name": "dwebx-json",
+  "description": "read &amp; write dwebx.json files",
+  "version": "1.0.0",
   "author": "Joe Hand <joe@hand.email>",
   "bugs": {
-    "url": "https://github.com/joehand/dat-json/issues"
+    "url": "https://github.com/joehand/dwebx-json/issues"
   },
   "devDependencies": {
-    "hyperdrive": "^9.12.3",
+    "ddrive": "git://github.com/DistributedWeb/ddrive.git#e1c7b7e012285eaeba5cc0ea834c68ee98649857",
     "random-access-memory": "^3.1.1",
     "standard": "^12.0.1",
     "tape": "^4.10.1"
   },
-  "homepage": "https://github.com/joehand/dat-json",
+  "homepage": "https://github.com/joehand/dwebx-json",
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joehand/dat-json.git"
+    "url": "https://github.com/joehand/dwebx-json.git"
   },
   "scripts": {
     "test": "standard && tape test/*.js"
   },
   "dependencies": {
-    "dat-encoding": "^5.0.1",
+    "dwebx-encoding": "git://github.com/DistributedWeb/dwebx-encoding.git#adbab1965b1152c3a7252ca01807e9744c713398",
     "toiletdb": "^1.4.1"
   }
 }

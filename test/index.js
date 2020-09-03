@@ -1,12 +1,12 @@
 var fs = require('fs')
 var path = require('path')
 var test = require('tape')
-var hyperdrive = require('hyperdrive')
+var ddrive = require('ddrive')
 var ram = require('random-access-memory')
 var datJSON = require('..')
 
-test('Default dat.json', function (t) {
-  var archive = hyperdrive(ram)
+test('Default dwebx.json', function (t) {
+  var archive = ddrive(ram)
   archive.ready(function () {
     var datjson = datJSON(archive)
     datjson.read(function (err) {
@@ -17,7 +17,7 @@ test('Default dat.json', function (t) {
         datjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
-          t.same(data.url, `dat://${archive.key.toString('hex')}`)
+          t.same(data.url, `dwebx://${archive.key.toString('hex')}`)
           t.same(data.name, 'test', 'has name value')
           t.end()
         })
@@ -26,8 +26,8 @@ test('Default dat.json', function (t) {
   })
 })
 
-test('Write dat.json to archive', function (t) {
-  var archive = hyperdrive(ram)
+test('Write dwebx.json to archive', function (t) {
+  var archive = ddrive(ram)
   archive.ready(function () {
     var datjson = datJSON(archive)
     datjson.create(function (err) {
@@ -39,7 +39,7 @@ test('Write dat.json to archive', function (t) {
         datjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
-          t.same(data.url, `dat://${archive.key.toString('hex')}`, 'url ok')
+          t.same(data.url, `dwebx://${archive.key.toString('hex')}`, 'url ok')
           t.same(data.specialVal, 'cat', 'has special value')
           t.end()
         })
@@ -84,9 +84,9 @@ test('.write with data object and no writable archive errors', function (t) {
   async = true
 })
 
-test('Write dat.json to file and archive', function (t) {
-  var archive = hyperdrive(ram)
-  var file = path.join(__dirname, 'dat.json')
+test('Write dwebx.json to file and archive', function (t) {
+  var archive = ddrive(ram)
+  var file = path.join(__dirname, 'dwebx.json')
   archive.ready(function () {
     var datjson = datJSON(archive, { file: file })
     datjson.create(function (err) {
@@ -99,7 +99,7 @@ test('Write dat.json to file and archive', function (t) {
           data = JSON.parse(data)
           t.error(err, 'fs no error')
           t.ok(data, 'fs has metadata')
-          t.same(data.url, `dat://${archive.key.toString('hex')}`, 'fs url ok')
+          t.same(data.url, `dwebx://${archive.key.toString('hex')}`, 'fs url ok')
           t.same(data.specialVal, 'cat', 'fs has special value')
           fs.unlinkSync(file)
           checkRead()
@@ -111,7 +111,7 @@ test('Write dat.json to file and archive', function (t) {
         datjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
-          t.same(data.url, `dat://${archive.key.toString('hex')}`, 'url ok')
+          t.same(data.url, `dwebx://${archive.key.toString('hex')}`, 'url ok')
           t.same(data.specialVal, 'cat', 'has special value')
           t.end()
         })

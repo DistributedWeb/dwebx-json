@@ -1,4 +1,4 @@
-var stringKey = require('dat-encoding').toStr
+var stringKey = require('dwebx-encoding').toStr
 // var path = require('path')
 var xtend = Object.assign
 var toiletdb = require('toiletdb')
@@ -6,12 +6,12 @@ var toiletdb = require('toiletdb')
 module.exports = function (archive, opts) {
   if (!opts) opts = {}
 
-  var db = toiletdb({ name: '/dat.json', fs: archive })
+  var db = toiletdb({ name: '/dwebx.json', fs: archive })
   var fileDb = opts.file ? toiletdb(opts.file) : null
 
   var that = {
     read: function (cb) {
-      archive.stat('/dat.json', function (err, stat) {
+      archive.stat('/dwebx.json', function (err, stat) {
         if (err) return cb(err)
         db.read(cb)
       })
@@ -26,8 +26,8 @@ module.exports = function (archive, opts) {
       if (!fileDb) return db.write(key, val, cb)
 
       // write to file then archive
-      // TODO: use hyperdrive indexing false option, need to talk to mafintosh about
-      //   https://botbot.me/freenode/dat/2017-05-12/?msg=85554242&page=3
+      // TODO: use ddrive indexing false option, need to talk to mafintosh about
+      //   https://botbot.me/freenode/dwebx/2017-05-12/?msg=85554242&page=3
       fileDb.write(key, val, function (err) {
         if (err) return cb(err)
         db.write(key, val, cb)
@@ -50,7 +50,7 @@ module.exports = function (archive, opts) {
     return {
       title: '',
       description: '',
-      url: 'dat://' + stringKey(archive.key)
+      url: 'dwebx://' + stringKey(archive.key)
     }
   }
 
