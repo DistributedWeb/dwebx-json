@@ -1,10 +1,10 @@
 {
   "name": "dwebx-json",
-  "description": "read &amp; write dwebx.json files",
+  "description": "Module for parsing dweb.json files from the legacy dWeb protocol.",
   "version": "1.0.0",
-  "author": "Joe Hand <joe@hand.email>",
+  "author": "Peeps Labs <peepslabs.gmail.com>",
   "bugs": {
-    "url": "https://github.com/joehand/dwebx-json/issues"
+    "url": "https://github.com/distributedweb/dwebx-json/issues"
   },
   "devDependencies": {
     "ddrive": "git://github.com/DistributedWeb/ddrive.git#e1c7b7e012285eaeba5cc0ea834c68ee98649857",
@@ -12,13 +12,13 @@
     "standard": "^12.0.1",
     "tape": "^4.10.1"
   },
-  "homepage": "https://github.com/joehand/dwebx-json",
+  "homepage": "https://dwebx.org",
   "keywords": [],
   "license": "MIT",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joehand/dwebx-json.git"
+    "url": "https://github.com/distributedweb/dwebx-json.git"
   },
   "scripts": {
     "test": "standard && tape test/*.js"
