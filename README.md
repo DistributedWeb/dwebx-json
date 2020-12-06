@@ -15,15 +15,15 @@ npm install dwebx-json
 ## Usage
 
 ```js
-var DatJSON = require('dwebx-json')
+var DWebxJSON = require('dwebx-json')
 
-var datjson = DatJSON(archive)
+var dwebxjson = DWebxJSON(archive)
 
-datjson.create({title: 'a dwebx', description: 'exciting'}, function (err) {
+dwebxjson.create({title: 'a dwebx', description: 'exciting'}, function (err) {
   if (err) throw err
 })
 
-datjson.read(function (err, data) {
+dwebxjson.read(function (err, data) {
   console.log(data)
 })
 ```
@@ -31,11 +31,11 @@ datjson.read(function (err, data) {
 Write to a `dwebx.json` on the file system also:
 
 ```js
-var DatJSON = require('dwebx-json')
+var DWebxJSON = require('dwebx-json')
 
-var datjson = DatJSON(archive, {file: path.join(dwebx.path, 'dwebx.json')})
+var dwebxjson = DWebxJSON(archive, {file: path.join(dwebx.path, 'dwebx.json')})
 
-datjson.create({title: 'a dwebx', description: 'exciting'}, function (err) {
+dwebxjson.create({title: 'a dwebx', description: 'exciting'}, function (err) {
   if (err) throw err
 })
 ```
@@ -44,27 +44,27 @@ datjson.create({title: 'a dwebx', description: 'exciting'}, function (err) {
 
 ## API
 
-### `var datjson = DatJSON(archive, [opts])`
+### `var dwebxjson = DWebxJSON(archive, [opts])`
 
-create a new datJson db
+create a new dwebxJson db
 
 Options:
 
 * `opts.file` - dwebx.json file path, updates will be written to file system and archive
 
-#### `datjson.create([data], cb)`
+#### `dwebxjson.create([data], cb)`
 
 Create a new `dwebx.json` file in the archive with the default keys (`url`, `title`, `description`). Pass in any additional data to add on initial create.
 
-#### `datjson.write(key, val, cb)` or `datjson.write(data, cb)`
+#### `dwebxjson.write(key, val, cb)` or `dwebxjson.write(data, cb)`
 
 Write a single `key` and `value` or an object, `data`, to the `dwebx.json` file. Use `file` option above to also update the file on the file system.
 
-#### `datjson.delete(key, cb)`
+#### `dwebxjson.delete(key, cb)`
 
 Delete a `key` from the `dwebx.json` file.
 
-#### `datjson.read(cb)`
+#### `dwebxjson.read(cb)`
 
 Read the current `dwebx.json`.
 

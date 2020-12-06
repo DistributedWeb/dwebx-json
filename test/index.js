@@ -8,13 +8,13 @@ var datJSON = require('..')
 test('Default dwebx.json', function (t) {
   var archive = ddrive(ram)
   archive.ready(function () {
-    var datjson = datJSON(archive)
-    datjson.read(function (err) {
+    var dwebxjson = datJSON(archive)
+    dwebxjson.read(function (err) {
       t.ok(err, 'error read before write')
-      datjson.create({ name: 'test' }, function (err) {
+      dwebxjson.create({ name: 'test' }, function (err) {
         t.error(err, 'no error')
 
-        datjson.read(function (err, data) {
+        dwebxjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
           t.same(data.url, `dwebx://${archive.key.toString('hex')}`)
@@ -29,14 +29,14 @@ test('Default dwebx.json', function (t) {
 test('Write dwebx.json to archive', function (t) {
   var archive = ddrive(ram)
   archive.ready(function () {
-    var datjson = datJSON(archive)
-    datjson.create(function (err) {
+    var dwebxjson = datJSON(archive)
+    dwebxjson.create(function (err) {
       t.error(err, 'no error')
-      datjson.write({ specialVal: 'cat' }, check)
+      dwebxjson.write({ specialVal: 'cat' }, check)
 
       function check (err) {
         t.error(err, 'no error')
-        datjson.read(function (err, data) {
+        dwebxjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
           t.same(data.url, `dwebx://${archive.key.toString('hex')}`, 'url ok')
@@ -50,9 +50,9 @@ test('Write dwebx.json to archive', function (t) {
 
 test('.create with no writable archive errors', function (t) {
   var archive = { writable: false }
-  var datjson = datJSON(archive)
+  var dwebxjson = datJSON(archive)
   var async = false
-  datjson.create(function (err) {
+  dwebxjson.create(function (err) {
     t.is(err.message, 'Archive not writable', 'should error')
     t.is(async, true, 'callback is asyncronous')
     t.end()
@@ -62,9 +62,9 @@ test('.create with no writable archive errors', function (t) {
 
 test('.write with key/value and no writable archive errors', function (t) {
   var archive = { writable: false }
-  var datjson = datJSON(archive)
+  var dwebxjson = datJSON(archive)
   var async = false
-  datjson.write('key', 'value', function (err) {
+  dwebxjson.write('key', 'value', function (err) {
     t.is(err.message, 'Archive not writable', 'should error')
     t.is(async, true, 'callback is asyncronous')
     t.end()
@@ -74,9 +74,9 @@ test('.write with key/value and no writable archive errors', function (t) {
 
 test('.write with data object and no writable archive errors', function (t) {
   var archive = { writable: false }
-  var datjson = datJSON(archive)
+  var dwebxjson = datJSON(archive)
   var async = false
-  datjson.write({ specialVal: 'cat' }, function (err) {
+  dwebxjson.write({ specialVal: 'cat' }, function (err) {
     t.is(err.message, 'Archive not writable', 'should error')
     t.is(async, true, 'callback is asyncronous')
     t.end()
@@ -88,10 +88,10 @@ test('Write dwebx.json to file and archive', function (t) {
   var archive = ddrive(ram)
   var file = path.join(__dirname, 'dwebx.json')
   archive.ready(function () {
-    var datjson = datJSON(archive, { file: file })
-    datjson.create(function (err) {
+    var dwebxjson = datJSON(archive, { file: file })
+    dwebxjson.create(function (err) {
       t.error(err, 'no error')
-      datjson.write({ specialVal: 'cat' }, checkFile)
+      dwebxjson.write({ specialVal: 'cat' }, checkFile)
 
       function checkFile (err) {
         t.error(err, 'no error')
@@ -108,7 +108,7 @@ test('Write dwebx.json to file and archive', function (t) {
 
       function checkRead (err) {
         t.error(err, 'no error')
-        datjson.read(function (err, data) {
+        dwebxjson.read(function (err, data) {
           t.error(err, 'no error')
           t.ok(data, 'has metadata')
           t.same(data.url, `dwebx://${archive.key.toString('hex')}`, 'url ok')
